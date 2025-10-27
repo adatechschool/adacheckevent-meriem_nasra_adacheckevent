@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-
 function App() {
   const [value, setValue] = useState([])
   const paris = async () =>{
