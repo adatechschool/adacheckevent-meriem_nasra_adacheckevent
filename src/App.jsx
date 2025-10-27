@@ -22,7 +22,7 @@ function App() {
 
      <li key = {item.id}>
      <strong>{item.title}</strong> 
-     <p>{item.lead_text}</p> 
+     <p>{item.description}</p> 
      <img src ={item.cover_url}/>
 
        </li>
