@@ -3,24 +3,13 @@ import { useState } from "react";
 
 
 export function AffDesc({min,setmin,value,loading,setloading}){
-//   const [textAffiche, setTextAffiche] = useState(textAffiches)
-// const limit = 130
 
-// let textAffiches = value.description.slice(0,limit)
+  const [text,settext]=useState(false);
+  const limit=120;
+  const HandClick=()=>{
+    settext(!text);
+  }
 
-
-// setTextAffiche(value.description)
-// textAffiche
-// const HandClick = () => {
-
-//   if(min) {
-//     textAffiche = value.description.slice(0,limit)
-//   }else {
-//     textAffiche = value.description
-//   }
-  
-//   };
-//     if (loading) return <p>Loading...</p>;
 return(
     <>
     <ul>
@@ -35,12 +24,17 @@ return(
    {item.description&& (
               <div
                 dangerouslySetInnerHTML={{
-                  __html: item.description,
-                }}
+                  __html: text
+                   ? item.description
+                  : item.description.slice(0, limit) + "...",
+              }}
               />
             )}
-            {/* <button onClick={HandClick}>See More</button> */}
-
+               {item.description && item.description.length > limit && (
+            <button onClick={HandClick}>
+              {text ? "Voir moins" : "Voir plus"}
+            </button>
+          )}
             {item.url && (
               <p>
                 🔗{' '}
@@ -67,3 +61,25 @@ return(
 
 
 
+
+
+
+
+//   const [textAffiche, setTextAffiche] = useState(textAffiches)
+// const limit = 130
+
+// let textAffiches = value.description.slice(0,limit)
+
+
+// setTextAffiche(value.description)
+// textAffiche
+// const HandClick = () => {
+
+//   if(min) {
+//     textAffiche = value.description.slice(0,limit)
+//   }else {
+//     textAffiche = value.description
+//   }
+  
+//   };
+    // if (loading) return <p>Loading...</p>;

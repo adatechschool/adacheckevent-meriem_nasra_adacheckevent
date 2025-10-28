@@ -20,7 +20,10 @@ function App() {
 
   return (
     <>
-    <AffDesc value={value} setValue={setValue} min={min} setmin={setmin} />
+
+    <AffDesc value={value}  />
+
+
     </>
 )}
 
