@@ -6,6 +6,7 @@ import { AffDesc } from './components/AffDesc.jsx';
 function App() {
   const [value, setValue] = useState([])
   const [searchBar, setSearchBar] = useState("")
+  const [loading,setloading]=useState();
   const paris = async () =>{
     const res = await fetch('https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?limit=20')
     const data = await res.json()
