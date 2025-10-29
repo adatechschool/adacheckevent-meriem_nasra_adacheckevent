@@ -17,7 +17,7 @@ function App() {
   
   },[])
  const filterEvent = value.filter((event) =>
-event.title.toLowerCase().includes(searchBar.toLocaleLowerCase()))
+ event.title.toLowerCase().includes(searchBar.toLocaleLowerCase()))
   return (
     <>
     <div>
