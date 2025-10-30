@@ -19,15 +19,20 @@ function App() {
   },[])
  const filterEvent = value.filter((event) =>
  event.title.toLowerCase().includes(searchBar.toLocaleLowerCase()))
+
   return (
     <>
-    <div>
-      
+   
+    <div className='p-10'>
+      <div className=''>
       <input type='text'
       placeholder='Rechercher un évènement'
+      class='w-60 px-4 py-2  border border-gray-400 rounded-lg mb-8'
       value={searchBar}
       onChange={(e) => setSearchBar(e.target.value)}
       />
+
+      </div>
     
     <AffDesc value={filterEvent}  />
     

@@ -5,7 +5,7 @@ export function AffDesc({ value, loading }) {
   const [page, setPage] = useState(1);
 
   const elempage = 12;  
-  const limit = 120;    
+  const limit = 95;    
 
   const toggleText = (id) => {
     setTextItems(prev => ({
@@ -31,22 +31,28 @@ export function AffDesc({ value, loading }) {
 
   return (
     <>
-      <ul>
+{/* <div className="pt-4 mt-7 flex flex-wrap justify-center">
+</div> */}
+
+      <ul className="space-y-3">
         {curItems.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} className="flex flex-col md:flex-row items-start">
+            
             {item.cover_url && (
               <img 
                 src={item.cover_url} 
                 alt={item.title} 
-                style={{ maxWidth: "100%", marginBottom: "10px" }}
+                className="rounded-2xl w-full md:w-52 h-56 object-cover mb-2"
               />
             )}
 
-            <strong>{item.title}</strong>
-            <p>{item.lead_text}</p>
+            <div className="p-4 flex-1">
+            <strong className ="text-lg font-bold block mb-2">{item.title}</strong>
+            <p className="mb-2 text-justify text-sm">{item.lead_text}</p>
 
             {item.description && (
               <div
+              className="text-sm text-justify mb-2"
                 dangerouslySetInnerHTML={{
                   __html: textItems[item.id]
                     ? item.description
@@ -56,19 +62,26 @@ export function AffDesc({ value, loading }) {
             )}
 
             {item.description && item.description.length > limit && (
-              <button onClick={() => toggleText(item.id)}>
+              <div className="flex items-center gap-4 mb-2">
+              <button onClick={() => toggleText(item.id)} 
+              className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mb-2">
                 {textItems[item.id] ? "Voir moins" : "Voir plus"}
               </button>
+            
+            <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mb-2" onClick={() => window.open(item.url)}> Lien</button>
+            
+            </div>
             )}
 
-            {item.url && (
+            {/* {item.url && (
               <p>
-                🔗{" "}
+                🔗{""} 
                 <a href={item.url} target="_blank" rel="noopener noreferrer">
                   {item.url}
                 </a>
-              </p>
-            )}
+              </p> */}
+            {/* )} */}
+            </div>
           </li>
         ))}
       </ul>
@@ -89,6 +102,7 @@ export function AffDesc({ value, loading }) {
       )}
 
       {value.length === 0 && <p>Aucun évènement trouvé</p>}
+
     </>
   );
 }
