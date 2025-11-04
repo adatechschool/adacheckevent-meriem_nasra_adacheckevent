@@ -4,7 +4,7 @@ export function AffDesc({ value, loading }) {
   const [textItems, setTextItems] = useState({}); // état par item
   const [page, setPage] = useState(1);
 
-  const elempage = 12;  
+  const elempage = 15;  
   const limit = 120;    
 
   const toggleText = (id) => {
