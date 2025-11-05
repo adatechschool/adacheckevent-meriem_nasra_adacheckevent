@@ -1,39 +1,32 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { AffDesc } from './components/AffDesc.jsx';
-
+import { useState } from "react";
+import { useFetchEvents } from "./hooks/usefetchevents.jsx";
+import { AffDesc } from "./components/AffDesc.jsx";
 
 function App() {
-  const [value, setValue] = useState([])
-  const [searchBar, setSearchBar] = useState("")
-  const [loading,setloading]=useState();
-  const paris = async () =>{
-    const res = await fetch('https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?limit=20')
-    const data = await res.json()
-    console.log(data);
-    setValue(data.results);
-  }
-  useEffect(() =>{
-  paris()
-  
-  },[])
- const filterEvent = value.filter((event) =>
-event.title.toLowerCase().includes(searchBar.toLocaleLowerCase()))
+  const { events, loading } = useFetchEvents();
+  const [searchBar, setSearchBar] = useState("");
+
+  // 🔹 Recherche dynamique
+  const filteredEvents = events.filter((f) =>
+    f.title?.toLowerCase().includes(searchBar.toLowerCase())
+  );
+
+  const eventsToDisplay = searchBar.trim() ? filteredEvents : events;
+
   return (
-    <>
-    <div>
-      
-      <input type='text'
-      placeholder='Rechercher un évènement'
-      value={searchBar}
-      onChange={(e) => setSearchBar(e.target.value)}
+    <div className="p-10 max-w-6xl mx-auto">
+    
+      <input
+        type="text"
+        placeholder="🔍 Rechercher un évènement"
+        className="w-full md:w-96 px-4 py-2 border border-gray-400 rounded-lg mb-8 block mx-auto"
+        value={searchBar}
+        onChange={(e) => setSearchBar(e.target.value)}
       />
-    
-    <AffDesc value={filterEvent}  />
-    
+
+      <AffDesc value={eventsToDisplay} loading={loading} />
     </div>
+  );
+}
 
-    </>
-)}
-
-export default App
+export default App;
