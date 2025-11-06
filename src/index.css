@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
 /* ----- Mode clair par défaut ----- */
 body {
   background-color: #ffffff;  /* fond clair global */
