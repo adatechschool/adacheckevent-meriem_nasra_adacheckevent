@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Fav from "./Fav";
+import Fav from "./fav";
 
 const getStoredLikes = () => {
   try {
@@ -25,6 +25,10 @@ export function AffDesc({ value, loading }) {
       return updated;
     });
   };
+
+  const toggleDarkMode = () => {
+    document.body.classList.toggle('dark-mode');
+  }
 
   const toggleText = (id) => {
     setExpanded((prev) => ({

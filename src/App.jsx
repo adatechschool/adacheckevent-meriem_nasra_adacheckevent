@@ -4,6 +4,7 @@ import { useFetchEvents } from "./hooks/usefetchevents.jsx";
 import { ArrowDownNarrowWide, ArrowUpNarrowWide } from "lucide-react";
 import Dark from "./components/dark.jsx";
 
+
 function App() {
   const { events, loading } = useFetchEvents();
   const [searchBar, setSearchBar] = useState("");
