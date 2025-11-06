@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
+
 const Dark = () => {
   const [dark, setDark] = useState(
     () => localStorage.getItem("darkMode") === "true"

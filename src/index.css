@@ -1,81 +1,46 @@
-@import "tailwindcss";
-
-/* Si vous utilisez des styles personnalisés */
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* ----- Mode clair par défaut ----- */
 body {
-  background-color: white;
-  color: black;
- 
-
-}
-body.dark-mode {
-  background-color: #121212;
-  color: white;
+  background-color: #ffffff;  /* fond clair global */
+  color: #000000;             /* texte noir */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+/* Conteneur principal */
+.main-content {
+  background-color: transparent; /* transparent pour laisser voir le fond du body */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
+/* Cartes, blocs, etc. */
+.card {
+  background-color: #f5f5f5;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* ----- Mode sombre activé ----- */
+body.dark-mode {
+  background-color: #121212; /* fond sombre global */
+  color: #f1f1f1;
+}
+
+/* conteneur principal : reste transparent ou légèrement assombri */
+body.dark-mode .main-content {
+  background-color: #1a1a1a; /* optionnel, sinon transparent */
+}
+
+/* Cartes ou éléments internes */
+body.dark-mode .card {
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+}
+
+/* Boutons, liens, etc. (exemple) */
+body.dark-mode button {
+  background-color: #333;
+  color: #fff;
 }

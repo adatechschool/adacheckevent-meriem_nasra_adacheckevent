@@ -26,9 +26,10 @@ export function AffDesc({ value, loading }) {
     });
   };
 
+  // --- Dark mode ---
   const toggleDarkMode = () => {
-    document.body.classList.toggle('dark-mode');
-  }
+    document.body.classList.toggle("dark-mode");
+  };
 
   const toggleText = (id) => {
     setExpanded((prev) => ({
@@ -38,7 +39,8 @@ export function AffDesc({ value, loading }) {
   };
 
   if (loading) return <p className="text-center">Chargement...</p>;
-  if (!value || value.length === 0) return <p className="text-center">Aucun évènement trouvé</p>;
+  if (!value || value.length === 0)
+    return <p className="text-center">Aucun évènement trouvé</p>;
 
   const filteredEvents = showFavorites
     ? value.filter((item) => liked[item.id])
@@ -50,6 +52,12 @@ export function AffDesc({ value, loading }) {
 
   return (
     <div>
+      {/* Bouton Dark Mode */}
+      <div className="flex justify-end mb-4">
+        
+      </div>
+
+      {/* Bouton favoris */}
       <div className="mb-4">
         <button
           onClick={() => setShowFavorites((prev) => !prev)}
@@ -59,12 +67,15 @@ export function AffDesc({ value, loading }) {
         </button>
       </div>
 
+      {/* Liste des événements */}
       <ul className="space-y-6">
         {current.map((f) => {
           const id = f.id;
-          console.log(id); // log en dehors des props
           return (
-            <li key={id} className="flex flex-col md:flex-row gap-4 border-b pb-4">
+            <li
+              key={id}
+              className="flex flex-col md:flex-row gap-4 border-b pb-4"
+            >
               {f.cover_url && (
                 <img
                   src={f.cover_url}
@@ -75,7 +86,9 @@ export function AffDesc({ value, loading }) {
 
               <div className="flex-1">
                 <h2 className="text-xl font-semibold mb-2">{f.title}</h2>
-                {f.lead_text && <p className="text-gray-600 mb-2">{f.lead_text}</p>}
+                {f.lead_text && (
+                  <p className="text-gray-600 mb-2">{f.lead_text}</p>
+                )}
 
                 {f.description && (
                   <div
@@ -119,6 +132,7 @@ export function AffDesc({ value, loading }) {
         })}
       </ul>
 
+      {/* Pagination */}
       {filteredEvents.length > itemsPerPage && (
         <div className="flex items-center gap-4 justify-center mt-6">
           <button
